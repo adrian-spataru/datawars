@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/nsa/Documents/Projects/Kaggle_Clone/Reference/REST-auth"
+set -gx VIRTUAL_ENV "/home/nsa/Documents/Projects/Kaggle_Clone/backend"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

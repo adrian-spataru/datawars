@@ -1,4 +1,4 @@
-#!/home/nsa/Documents/Projects/Kaggle_Clone/Reference/REST-auth/bin/python
+#!/home/nsa/Documents/Projects/Kaggle_Clone/backend/bin/python
 
 # -*- coding: utf-8 -*-
 import re

@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/nsa/Documents/Projects/Kaggle_Clone/Reference/REST-auth"
+VIRTUAL_ENV="/home/nsa/Documents/Projects/Kaggle_Clone/backend"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
