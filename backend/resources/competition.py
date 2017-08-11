@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 competition_field = {
                         "id": fields.Integer,
+                        "shortname": fields.String,
                         "name": fields.String,
                         "description": fields.String,
                         "data": fields.String,
@@ -50,6 +51,12 @@ class CompetitionResource(Resource):
                                  help="Competition description is required",
                                  location="json")
 
+        self.parser.add_argument("shortname",
+                                 type=str,
+                                 required=True,
+                                 help="Shortname of the competition is required",
+                                 location="json")
+
         self.parser.add_argument("data",
                                  type=str,
                                  required=True,
@@ -59,11 +66,11 @@ class CompetitionResource(Resource):
         self.parser.add_argument("ending_at", type=int,location="json")
 
     @login_required
-    def get(self, url_code=None, user_id=None, response=None):
+    def get(self, comp_id=None, user_id=None, response=None):
         if user_id is not None:
-            if url_code is not None:
-                if Competition.query.filter_by(url_code=url_code).first():
-                    return marshal(Competition.query.filter_by(url_code=url_code).first(), competition_field), 200
+            if comp_id is not None:
+                if Competition.query.filter_by(id=comp_id).first():
+                    return marshal(Competition.query.filter_by(id=comp_id).first(), competition_field), 200
                 response = ("Competition not found.", 409)
         return make_response(jsonify({
             "message": response[0]
@@ -71,17 +78,19 @@ class CompetitionResource(Resource):
 
 
     @login_required
-    def post(self, url_code=None, user_id=None, response=None):
+    def post(self, comp_id=None, user_id=None, response=None):
         args = self.parser.parse_args()
         name = args["name"]
         description = args["description"]
         data = args["data"]
+        shortname = args["shortname"]
+
         if user_id is not None:
 
-            if Competition.query.filter_by(url_code=url_code).first():
+            if Competition.query.filter_by(shortname=shortname).first():
                 response = ("Competition with a similar name exists", 409)
             else:
-                competition = Competition(name, url_code, description, data)
+                competition = Competition(name, shortname, description, data)
                 data = save_record(competition)
                 response = ("Competition created successfully", 201)
 

@@ -11,7 +11,7 @@ class Submission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     competition_id = db.Column(db.Integer, db.ForeignKey("competition.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    submission = db.Column(db.LargeBinary, nullable=False)
+    submission = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
     score = db.Column(db.Float)
@@ -22,4 +22,4 @@ class Submission(db.Model):
         self.user_id = user_id 
         self.description = description
         self.score = score
-
+        self.submission = submission
