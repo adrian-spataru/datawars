@@ -3,7 +3,8 @@ from flask_restful import Api
 from flask_jwt import JWT
 
 from resources.accounts_manager import LoginResource, RegisterResource
-from resources.competition import CompetitionsResource
+from resources.competition import CompetitionsResource, CompetitionResource
+from resources.team import TeamsResource, TeamResource 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -20,8 +21,13 @@ def create_tables():
 api.add_resource(RegisterResource, '/auth/register')
 api.add_resource(LoginResource, '/auth/login')
 
-# bucketlist routes
+# competition routes
 api.add_resource(CompetitionsResource, '/competitions')
+api.add_resource(CompetitionResource, '/competition/<string:url_code>')
+
+# teams routes
+api.add_resource(TeamsResource, '/teams')
+api.add_resource(TeamResource, '/team/<string:team>')
 
 if __name__ == '__main__':
     from db import db

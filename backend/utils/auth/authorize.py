@@ -28,7 +28,7 @@ def login_required(func):
                 user_id = None
 
         except KeyError as err:
-            response = ("Please login to access your bucketlists", 401)
+            response = ("Please login to access.", 401)
             logger.error(err)  # log the error
 
         updated_kwargs = {
