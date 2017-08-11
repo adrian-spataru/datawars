@@ -1,8 +1,9 @@
 import logging
 from flask import jsonify, make_response
 from flask_restful import Resource, reqparse
-
+from models.team import Team
 from models.user import User
+from models.submission import Submission
 from utils.db import save_record
 from utils.auth.token import JWT
 
@@ -29,7 +30,7 @@ class LoginResource(Resource):
         args = self.parser.parse_args()
         username = args.get("username").strip()
         password = args.get("password").strip()
-
+        print("logging %s" % username)
         if any(arg == "" for arg in [username, password]):
             response = ("message", "username and password is required", 400)
         else:

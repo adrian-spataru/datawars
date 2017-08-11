@@ -11,5 +11,5 @@ class Team(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
     users = db.relationship("User", backref="team", lazy="dynamic")
 
-    def __init__(self, name)
+    def __init__(self, name):
         self.name = name

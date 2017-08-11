@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 import jwt
 
-secret = os.getenv("TOKEN_SECRET")
+secret = "someStringwhichwillbeDynamicCreated4EachUser"
 
 
 class JWT:
