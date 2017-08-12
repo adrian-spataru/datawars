@@ -70,3 +70,22 @@ class TeamResource(Resource):
             "message": response[0]
         }), response[1])
 
+class AssignTeamResource(Resource):
+    """ this class deals with assigning members to teams in the database."""
+
+    @login_required
+    def post(self, team=None, user_id=None, response=None):
+        if user_id is not None:
+            value =Team.query.filter_by(name=team).first() 
+            if value:
+                user = User.query.filter_by(id=user_id).first()
+                user.team_id = value.id
+                save_record(user)
+                response = ("Assigned User to Team %s successfully" % team, 201)
+            else:
+                response = ("Team %s not found" % team, 201)
+
+        return make_response(jsonify({
+            "message": response[0]
+        }), response[1])
+
