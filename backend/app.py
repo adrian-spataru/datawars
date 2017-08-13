@@ -5,6 +5,7 @@ from flask_jwt import JWT
 from resources.accounts_manager import LoginResource, RegisterResource
 from resources.competition import CompetitionsResource, CompetitionResource
 from resources.submission import SubmissionsResource, SubmissionResource 
+from resources.leaderboard import PublicLeaderboardResource
 from resources.team import TeamsResource, TeamResource, AssignTeamResource
 
 app = Flask(__name__)
@@ -31,7 +32,7 @@ api.add_resource(SubmissionsResource, '/competition/<int:comp_id>/submissions/')
 api.add_resource(SubmissionResource, '/competition/<int:comp_id>/submission/')
 
 # leaderboard routes
-#api.add_resource(PublicLeaderboardResource, '/competition/<string:url_code>/public_leaderboard/')
+api.add_resource(PublicLeaderboardResource, '/competition/<int:comp_id>/public_leaderboard/')
 #api.add_resource(PrivateLeaderboardResource, '/competition/<string:url_code>/private_leaderboard/')
 
 # teams routes
