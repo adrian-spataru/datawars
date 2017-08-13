@@ -66,7 +66,8 @@ class SubmissionResource(Resource):
         submission = args["submission"]
         
         if comp_id and user_id is not None:
-            submission = Submission(comp_id, user_id, submission, "Submission", -1.0)
+            #TODO: Implement Score evaluation.
+            submission = Submission(comp_id, user_id, submission, "Submission", -1.0, -1.0)
             data = save_record(submission)
             response = ("Submission created successfully", 201)
 
