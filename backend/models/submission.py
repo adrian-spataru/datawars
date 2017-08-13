@@ -14,12 +14,14 @@ class Submission(db.Model):
     submission = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
-    score = db.Column(db.Float)
+    public_score = db.Column(db.Float)
+    private_score = db.Column(db.Float)
     marked = db.Column(db.Boolean, default=False)
 
-    def __init__(self, competition_id, user_id, submission, description, score):
+    def __init__(self, competition_id, user_id, submission, description, public_score, private_score):
         self.competition_id = competition_id
         self.user_id = user_id 
         self.description = description
-        self.score = score
+        self.public_score = public_score
+        self.private_score = private_score 
         self.submission = submission

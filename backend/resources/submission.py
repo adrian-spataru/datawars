@@ -17,7 +17,8 @@ submission_field = {
                         "submission": fields.String,
                         "description": fields.String,
                         "created_at": fields.DateTime,
-                        "score": fields.Float,
+                        "public_score": fields.Float,
+                        "private_score": fields.Float,
                         "marked": fields.Boolean,
                     }
 
