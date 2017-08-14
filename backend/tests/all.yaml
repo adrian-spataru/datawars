@@ -1,3 +1,4 @@
 - import: tests/auth.yaml
 - import: tests/team.yaml
 - import: tests/competition.yaml
+- import: tests/submission.yaml

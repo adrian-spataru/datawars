@@ -1,0 +1,32 @@
+- config:
+    - testset: "Submission endpoint Tests"
+    - group: "Submission"    
+- test:
+    - group: "Submission"    
+    - name: "Login"
+    - url: "/auth/login"
+    - method: "POST"
+    - body: '{ "username": "johndoe", "password" : "password123" }'
+    - headers: {"Content-Type": "application/json"}
+    - extract_binds:
+        - 'TOKEN' : {'jsonpath_mini': 'token'}
+- test:
+    - group: "Submission"    
+    - name: "Get all Submissions"
+    - url: "/competition/1/submissions"
+    - headers: {template: {"Authorization": "$TOKEN"}}
+    - expected_status: [409]
+- test:
+    - group: "Submission"    
+    - name: "Insert Submission"
+    - method: "POST"
+    - body: '{ "submission" : "A;A;A;B;A;B;B;C;C;C" }'
+    - url: "/competition/1/submission"
+    - headers: {template: {"Authorization": "$TOKEN", "Content-Type": "application/json"}}
+    - expected_status: [201]
+- test:
+    - group: "Submission"    
+    - name: "Get all Submissions"
+    - url: "/competition/1/submissions"
+    - headers: {template: {"Authorization": "$TOKEN"}}
+    - expected_status: [200]
