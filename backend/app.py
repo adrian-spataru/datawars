@@ -36,8 +36,8 @@ api.add_resource(PublicLeaderboardResource, '/competition/<int:comp_id>/public_l
 api.add_resource(PrivateLeaderboardResource, '/competition/<int:comp_id>/private_leaderboard/')
 
 # teams routes
-api.add_resource(TeamsResource, '/teams')
-api.add_resource(TeamResource, '/team/<string:team>')
+api.add_resource(TeamsResource, '/teams','/teams/')
+api.add_resource(TeamResource, '/team/<string:team>','/team/','/team')
 api.add_resource(AssignTeamResource, '/assignteam/<string:team>')
 
 if __name__ == '__main__':
