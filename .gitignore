@@ -4,7 +4,9 @@ dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+__pycache__/
+*.py[cod]
+:wq
 # Editor directories and files
 *.pyc
 .idea
