@@ -1,0 +1,28 @@
+- config:
+    -testset: "Basic Authentication Tests"
+- test:
+    - name: "Check if User exists"
+    - url: "/auth/login"
+    - method: "POST"
+    - body: '{ "username": "johndoe", "password" : "password123" }'
+    - headers: {"Content-Type": "application/json"}
+    - expected_status: [401]
+- test:
+    - name: "Registration"
+    - url: "/auth/register"
+    - method: "POST"
+    - body: '{ "username": "johndoe", "password" : "password123" }'
+    - headers: {"Content-Type": "application/json"}
+- test:
+    - name: "Login"
+    - url: "/auth/login"
+    - method: "POST"
+    - body: '{ "username": "johndoe", "password" : "password123" }'
+    - headers: {"Content-Type": "application/json"}
+    - extract_binds:
+        - 'TOKEN' : {'jsonpath_mini': 'token'}
+- test:
+    - name: "Check if token works in a endpoint"
+    - url: "/competitions"
+    - headers: {template: {"Authorization": "$TOKEN"}}
+    - expected_status: [409]
