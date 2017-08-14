@@ -1,0 +1,2 @@
+- import: tests/auth.yaml
+- import: tests/team.yaml

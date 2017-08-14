@@ -1,0 +1,41 @@
+- config:
+    - testset: "Team endpoint Tests"
+    - group: "Team"    
+- test:
+    - group: "Team"    
+    - name: "Login"
+    - url: "/auth/login"
+    - method: "POST"
+    - body: '{ "username": "johndoe", "password" : "password123" }'
+    - headers: {"Content-Type": "application/json"}
+    - extract_binds:
+        - 'TOKEN' : {'jsonpath_mini': 'token'}
+- test:
+    - group: "Team"    
+    - name: "Get teams"
+    - url: "/teams"
+    - headers: {template: {"Authorization": "$TOKEN"}}
+    - expected_status: [409]
+- test:
+    - group: "Team"    
+    - name: "add team"
+    - url: "/team/"
+    - method: "POST"
+    - headers: {template: {"Authorization": "$TOKEN", "Content-Type": "application/json"}}
+    - body: '{ "name": "teamtest" }'
+    - expected_status: [201]
+- test:
+    - group: "Team"    
+    - name: "check for team duplicate"
+    - url: "/team/"
+    - method: "POST"
+    - headers: {template: {"Authorization": "$TOKEN", "Content-Type": "application/json"}}
+    - body: '{ "name": "teamtest" }'
+    - expected_status: [409]
+- test:
+    - group: "Team"    
+    - name: "Assign team to user"
+    - url: "/assignteam/teamtest"
+    - method: "POST"
+    - headers: {template: {"Authorization": "$TOKEN"}}
+    - expected_status: [201]
