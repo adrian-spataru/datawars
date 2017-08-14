@@ -25,7 +25,7 @@ api.add_resource(LoginResource, '/auth/login')
 
 # competition routes
 api.add_resource(CompetitionsResource, '/competitions')
-api.add_resource(CompetitionResource, '/competition/<int:comp_id>')
+api.add_resource(CompetitionResource, '/competition/<int:comp_id>','/competition', '/competition/')
 
 # submissions routes
 api.add_resource(SubmissionsResource, '/competition/<int:comp_id>/submissions/')

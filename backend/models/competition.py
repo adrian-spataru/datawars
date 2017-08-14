@@ -13,15 +13,19 @@ class Competition(db.Model):
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=False)
     data = db.Column(db.Text, nullable=False)
+    solution = db.Column(db.Text, nullable=False)
+    public_ids = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
     ending_at = db.Column(db.DateTime, default=(datetime.datetime.now()+ datetime.timedelta(days=1)))
     submissions = db.relationship("Submission", backref="competition", lazy="dynamic")
 
-    def __init__(self, name, shortname, description, data, ending_at=None):
+    def __init__(self, name, shortname, description, data, solution, public_ids, ending_at=None):
         self.name = name
         self.shortname = shortname 
         self.description = description
         self.data = data
+        self.solution = solution
+        self.public_ids = public_ids 
         if ending_at:
             self.ending_at = ending_at
 

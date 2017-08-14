@@ -57,6 +57,18 @@ class CompetitionResource(Resource):
                                  help="Shortname of the competition is required",
                                  location="json")
 
+        self.parser.add_argument("public_ids",
+                                 type=str,
+                                 required=True,
+                                 help="Competition solution is required",
+                                 location="json")
+
+        self.parser.add_argument("solution",
+                                 type=str,
+                                 required=True,
+                                 help="Competition public solution ids is required",
+                                 location="json")
+
         self.parser.add_argument("data",
                                  type=str,
                                  required=True,
@@ -84,13 +96,15 @@ class CompetitionResource(Resource):
         description = args["description"]
         data = args["data"]
         shortname = args["shortname"]
+        solution = args["solution"]
+        public_ids = args["public_ids"]
 
         if user_id is not None:
 
             if Competition.query.filter_by(shortname=shortname).first():
                 response = ("Competition with a similar name exists", 409)
             else:
-                competition = Competition(name, shortname, description, data)
+                competition = Competition(name=name, shortname=shortname, description=description, data=data, solution=solution, public_ids=public_ids)
                 data = save_record(competition)
                 response = ("Competition created successfully", 201)
 

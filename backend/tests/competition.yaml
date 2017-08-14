@@ -1,0 +1,38 @@
+- config:
+    - testset: "Competition endpoint Tests"
+    - group: "Competition"    
+- test:
+    - group: "Competition"    
+    - name: "Login"
+    - url: "/auth/login"
+    - method: "POST"
+    - body: '{ "username": "johndoe", "password" : "password123" }'
+    - headers: {"Content-Type": "application/json"}
+    - extract_binds:
+        - 'TOKEN' : {'jsonpath_mini': 'token'}
+- test:
+    - group: "Competition"    
+    - name: "Get all competitions"
+    - url: "/competitions"
+    - headers: {template: {"Authorization": "$TOKEN"}}
+    - expected_status: [409]
+- test:
+    - group: "Competition"    
+    - name: "Get all competitions"
+    - url: "/competitions"
+    - headers: {template: {"Authorization": "$TOKEN"}}
+    - expected_status: [409]
+- test:
+    - group: "Competition"    
+    - name: "Insert Competition"
+    - method: "POST"
+    - body: '{ "name": "Test Competition", "shortname" : "test", "description": " ", "data": " ", "solution":"A;A;A;B;A;B;B;C;C;C", "public_ids": "0;2;3;6;7" }'
+    - url: "/competition"
+    - headers: {template: {"Authorization": "$TOKEN", "Content-Type": "application/json"}}
+    - expected_status: [201]
+- test:
+    - group: "Competition"    
+    - name: "Check if the competition was added"
+    - url: "/competitions"
+    - headers: {template: {"Authorization": "$TOKEN"}}
+    - expected_status: [200]
