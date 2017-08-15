@@ -1,8 +1,8 @@
 - config:
-    - testset: "Submission endpoint Tests"
-    - group: "Submission"    
+    - testset: "Basic Leaderboard Tests"
+    - group: "basicLeaderboard"    
 - test:
-    - group: "Submission"    
+    - group: "basicLeaderboard"    
     - name: "Login"
     - url: "/auth/login"
     - method: "POST"
@@ -11,22 +11,22 @@
     - extract_binds:
         - 'TOKEN' : {'jsonpath_mini': 'token'}
 - test:
-    - group: "Submission"    
-    - name: "Get all Submissions"
-    - url: "/competition/1/submissions/"
-    - headers: {template: {"Authorization": "$TOKEN"}}
-    - expected_status: [409]
-- test:
-    - group: "Submission"    
+    - group: "basicLeaderboard"    
     - name: "Insert Submission"
     - method: "POST"
-    - body: '{ "submission" : "A;A;A;B;A;B;B;C;C;C" }'
+    - body: '{ "submission" : "A;B;B;B;A;B;B;C;C;C" }'
     - url: "/competition/1/submission/"
     - headers: {template: {"Authorization": "$TOKEN", "Content-Type": "application/json"}}
     - expected_status: [201]
 - test:
-    - group: "Submission"    
-    - name: "Get all Submissions"
-    - url: "/competition/1/submissions/"
+    - group: "basicLeaderboard"    
+    - name: "Get Public Leaderboard"
+    - url: "/competition/1/public_leaderboard/"
+    - headers: {template: {"Authorization": "$TOKEN"}}
+    - expected_status: [200]
+- test:
+    - group: "basicLeaderboard"    
+    - name: "Get Private Leaderboard"
+    - url: "/competition/1/private_leaderboard/"
     - headers: {template: {"Authorization": "$TOKEN"}}
     - expected_status: [200]

@@ -28,8 +28,9 @@ api.add_resource(CompetitionsResource, '/competitions')
 api.add_resource(CompetitionResource, '/competition/<int:comp_id>','/competition', '/competition/')
 
 # submissions routes
-api.add_resource(SubmissionsResource, '/competition/<int:comp_id>/submissions/')
-api.add_resource(SubmissionResource, '/competition/<int:comp_id>/submission/')
+api.add_resource(SubmissionsResource, '/competition/<int:comp_id>/submissions/','/competition/<int:comp_id>/submissions')
+
+api.add_resource(SubmissionResource, '/competition/<int:comp_id>/submission/', '/competition/<int:comp_id>/submission')
 
 # leaderboard routes
 api.add_resource(PublicLeaderboardResource, '/competition/<int:comp_id>/public_leaderboard/')

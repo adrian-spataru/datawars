@@ -7,6 +7,7 @@ from models.competition import Competition
 from models.submission import Submission 
 from utils.db import save_record, delete_record
 from utils.auth.authorize import login_required
+from utils.eval import accuracy_score_public, accuracy_score_private 
 
 logger = logging.getLogger(__name__)
 
@@ -67,7 +68,10 @@ class SubmissionResource(Resource):
         
         if comp_id and user_id is not None:
             #TODO: Implement Score evaluation.
-            submission = Submission(comp_id, user_id, submission, "Submission", -1.0, -1.0)
+            comp = Competition.query.filter_by(id=comp_id).first()
+            public_score = accuracy_score_public(comp.solution, submission, comp.public_ids) 
+            private_score = accuracy_score_private(comp.solution, submission) 
+            submission = Submission(comp_id, user_id, submission, "Submission", public_score, private_score)
             data = save_record(submission)
             response = ("Submission created successfully", 201)
 

@@ -2,3 +2,4 @@
 - import: tests/team.yaml
 - import: tests/competition.yaml
 - import: tests/submission.yaml
+- import: tests/basic_leaderboard.yaml

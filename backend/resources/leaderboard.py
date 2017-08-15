@@ -46,7 +46,7 @@ class PublicLeaderboardResource(Resource):
     def get(self,comp_id=None,user_id=None, response=None):
         if user_id and comp_id is not None:
             # TODO: This is very bad and you should be ashamed. Grab the db session to make the query. Active Record is a bit limited.
-            submissions_all = Submission.query.filter_by(competition_id=comp_id).order_by(Submission.score).all() # DON'T USE ORDER_BY IF YOU AVOID IT
+            submissions_all = Submission.query.filter_by(competition_id=comp_id).order_by(Submission.public_score).all() # DON'T USE ORDER_BY IF YOU AVOID IT
             if submissions_all:
                 user_sub_map = {}
                 for s in submissions_all:
@@ -71,7 +71,7 @@ class PrivateLeaderboardResource(Resource):
     def get(self,comp_id=None,user_id=None, response=None):
         if user_id and comp_id is not None:
             # TODO: This is very bad and you should be ashamed. Grab the db session to make the query. Active Record is a bit limited.
-            submissions_all = Submission.query.filter_by(competition_id=comp_id).order_by(Submission.score).all() # DON'T USE ORDER_BY IF YOU AVOID IT
+            submissions_all = Submission.query.filter_by(competition_id=comp_id).order_by(Submission.private_score).all() # DON'T USE ORDER_BY IF YOU AVOID IT
             if submissions_all:
                 user_sub_map = {}
                 for s in submissions_all:
