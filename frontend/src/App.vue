@@ -7,13 +7,15 @@
       a.item Data
       a.active.item Leaderboard
       a.item Submit
-      a.item Logout
+      router-link(to="/login").item Login
   router-view.marginRoute
 </template>
 
 <script>
+
 export default {
   name: 'app'
+
 }
 </script>
 

@@ -10,19 +10,25 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@websanova/vue-auth": "^2.16.1-beta",
+    "axios": "^0.16.2",
     "pug": "^2.0.0-rc.3",
     "semantic-ui-css": "^2.2.12",
     "vue": "^2.3.3",
-    "vue-router": "^2.6.0"
+    "vue-auth": "^1.0.0-alpha.1",
+    "vue-axios": "^2.0.2",
+    "vue-resource": "^1.3.4",
+    "vue-router": "^2.6.0",
+    "vuex": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
-    "babel-core": "^6.22.1",
+    "babel-core": "^6.26.0",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
-    "babel-register": "^6.22.0",
+    "babel-register": "^6.26.0",
     "chalk": "^2.0.1",
     "connect-history-api-fallback": "^1.3.0",
     "copy-webpack-plugin": "^4.0.1",

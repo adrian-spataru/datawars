@@ -14,7 +14,7 @@
     - group: "basicLeaderboard"    
     - name: "Insert Submission"
     - method: "POST"
-    - body: '{ "submission" : "A;B;B;B;A;B;B;C;C;C" }'
+    - body: '{ "submission" : "A;A;A;A;A;A;A;A;C;C" }'
     - url: "/competition/1/submission/"
     - headers: {template: {"Authorization": "$TOKEN", "Content-Type": "application/json"}}
     - expected_status: [201]
