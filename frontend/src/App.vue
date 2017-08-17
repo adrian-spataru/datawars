@@ -2,19 +2,32 @@
 #app
   .ui.container
     .ui.secondary.menu
-      a.item Home
+      router-link(to="/").item Home
       a.item Description
       a.item Data
       a.active.item Leaderboard
-      a.item Submit
-      router-link(to="/login").item Login
+
+      router-link(to="login", v-if="!isLoggedIn").item Login
+      a(@click="logout", v-if="isLoggedIn").item Logout
+
   router-view.marginRoute
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'app'
+  name: 'app',
+  computed:{ ...mapGetters(["isLoggedIn", "errorLogin","test"]),},
+  methods: {
+    logout(event) {
+      this.$store.dispatch("logout")
+
+    }
+
+  }
+
+
 
 }
 </script>

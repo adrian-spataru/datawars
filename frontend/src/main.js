@@ -7,12 +7,13 @@ import "semantic-ui-css/semantic.min.css"
 import "./assets/style.css"
 import VueResource from 'vue-resource'
 
-import store from './store/index.js'
 
 Vue.use(VueResource);
-Vue.http.options.root = 'http://127.0.0.1:5000'
+Vue.http.headers.common['Access-Control-Allow-Origin'] = '*';
+import store from './store/index.js'
 
 Vue.config.productionTip = false
+
 
 
 /* eslint-disable no-new */

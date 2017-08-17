@@ -7,8 +7,10 @@ from resources.competition import CompetitionsResource, CompetitionResource
 from resources.submission import SubmissionsResource, SubmissionResource 
 from resources.leaderboard import PublicLeaderboardResource, PrivateLeaderboardResource
 from resources.team import TeamsResource, TeamResource, AssignTeamResource
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app, resources={r'/*': {"origins": '*'}})
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'Random Tree Random Forest'
