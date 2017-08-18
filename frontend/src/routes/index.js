@@ -58,6 +58,17 @@ export default [
       auth: true,
     },
   },
+        // Competitions
+  {
+    path: '/competitions',
+    name: 'competition.index',
+    component: require('@/pages/competition/index.vue'),
+
+    // If the user needs to be authenticated to view this page
+    meta: {
+      auth: true,
+    },
+  },
 
   // Register
   {
