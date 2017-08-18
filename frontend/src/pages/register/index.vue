@@ -1,7 +1,13 @@
 <template lang="pug">
 v-layout
   h1.ui.header Registration
-
+  .ui.input(v-bind:class="{error: $store.state.auth.error}")
+    input(v-model="user.username", placeholder="username")
+  br
+  .ui.input(v-bind:class="{error: $store.state.auth.error}")
+    input(v-model="user.password", type="password" placeholder="password")
+  br
+  button.ui.button(v-on:click="register(user)") Register
 </template>
 
 <script>
@@ -19,10 +25,7 @@ v-layout
     data() {
       return {
         user: {
-          firstName: null,
-          lastName: null,
-          email: null,
-          passwordConfirm: null,
+          username: null,
           password: null,
         },
       };
@@ -30,6 +33,7 @@ v-layout
 
     methods: {
       register(user) {
+        console.log(user);
         authService.register(user);
       },
     },

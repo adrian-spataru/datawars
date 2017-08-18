@@ -1,11 +1,10 @@
 import Vue from 'vue';
-import store from './../../store';
+// import store from './../../store';
 
 // When the request succeeds
-const success = (token) => {
-  store.dispatch('auth/login', token);
+const success = () => {
   Vue.router.push({
-    name: 'home.index',
+    name: 'login.index',
   });
 };
 
@@ -14,11 +13,12 @@ const failed = () => {
 };
 
 export default (user) => {
-  if (!user.email || !user.password || !user.passwordConfirm || !user.firstName || !user.lastName) {
-    failed();
-  } else if (user.password !== user.passwordConfirm) {
-    failed();
-  } else {
-    success('RandomGeneratedToken');
-  }
+  Vue.$http.post('/auth/register', user)
+    .then((response) => {
+      console.log(response);
+      success();
+    })
+    .catch(() => {
+      failed();
+    });
 };
