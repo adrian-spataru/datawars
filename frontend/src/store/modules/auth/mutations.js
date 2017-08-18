@@ -11,6 +11,8 @@ import {
   CHECK,
   LOGIN,
   LOGOUT,
+  ERROR,
+  RESETERROR,
 } from './mutation-types';
 
 export default {
@@ -23,13 +25,23 @@ export default {
 
   [LOGIN](state, token) {
     state.authenticated = true;
+    state.error = false;
     localStorage.setItem('id_token', token);
     Vue.$http.defaults.headers.common.Authorization = `${token}`;
   },
 
   [LOGOUT](state) {
     state.authenticated = false;
+    state.error = false;
     localStorage.removeItem('id_token');
     Vue.$http.defaults.headers.common.Authorization = '';
+  },
+
+  [ERROR](state) {
+    state.error = true;
+  },
+
+  [RESETERROR](state) {
+    state.error = false;
   },
 };

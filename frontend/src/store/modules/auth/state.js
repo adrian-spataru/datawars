@@ -7,4 +7,5 @@
 
 export default {
   authenticated: false,
+  error: false,
 };

@@ -9,9 +9,14 @@
 export const CHECK = 'CHECK';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const ERROR = 'ERROR';
+export const RESETERROR = 'RESETERROR';
+
 
 export default {
   CHECK,
   LOGIN,
   LOGOUT,
+  ERROR,
+  RESETERROR,
 };

@@ -20,8 +20,18 @@ export const logout = ({ commit }) => {
   commit(types.LOGOUT);
 };
 
+export const error = ({ commit }) => {
+  commit(types.ERROR);
+};
+
+export const reseterror = ({ commit }) => {
+  commit(types.RESETERROR);
+};
+
 export default {
   check,
   login,
   logout,
+  error,
+  reseterror,
 };

@@ -12,18 +12,21 @@ const success = (token) => {
 };
 
 // When the request fails
-const failed = (error) => {
-  console.log(error);
+const failed = () => {
+  store.dispatch('auth/error');
 };
 
 export default (user) => {
   Vue.$http.post('/auth/login', user)
     .then((response) => {
-      success(response.data.token);
+      if (!response.data.token) {
+        failed();
+      } else {
+        success(response.data.token);
+        store.dispatch('auth/reseterror');
+      }
     })
-    .catch((error) => {
-      failed(error);
+    .catch(() => {
+      failed();
     });
-
-  success('RandomGeneratedToken');
 };

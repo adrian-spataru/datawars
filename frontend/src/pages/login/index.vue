@@ -1,17 +1,19 @@
 <template lang="pug">
 v-layout
-    .ui.container
+    .ui.container(@click="reseterror")
         h1.ui.header Login
-        .ui.input
+        .ui.input(v-bind:class="{error: $store.state.auth.error}")
             input(v-model="user.username", placeholder="username")
         br
-        .ui.input
+        .ui.input(v-bind:class="{error: $store.state.auth.error}")
             input(v-model="user.password", type="password" placeholder="password")
         br
+        p(v-if="$store.state.auth.error").ui.red Invalid Login Credentials
         button.ui.button(v-on:click="login(user)") Login
         br
         p No account?
-        router-link(:to="{name: 'register.index'}") Register 
+        router-link(:to="{name: 'register.index'}") Register
+
 </template>
 
 <script>
@@ -29,6 +31,7 @@ v-layout
         user: {
           username: null,
           password: null,
+          error: false,
         },
       };
     },
@@ -36,6 +39,9 @@ v-layout
     methods: {
       login(user) {
         authService.login(user);
+      },
+      reseterror() {
+        this.$store.dispatch('auth/reseterror');
       },
     },
 
