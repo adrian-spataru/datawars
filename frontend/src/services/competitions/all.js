@@ -3,9 +3,9 @@ import store from './../../store';
 
 // When the request succeeds
 const success = (data) => {
-  store.dispatch('competition/clear');
+  store.dispatch('competitions/clear');
   data.forEach((d) => {
-    store.dispatch('competition/store', d);
+    store.dispatch('competitions/store', d);
   });
 };
 

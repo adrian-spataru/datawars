@@ -7,9 +7,7 @@
  */
 
 export const STORE = 'STORE';
-export const CLEAR = 'CLEAR';
 
 export default {
   STORE,
-  CLEAR,
 };

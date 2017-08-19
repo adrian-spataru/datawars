@@ -6,5 +6,11 @@
  */
 
 export default {
-  competitions: [],
+  id: null,
+  shortname: '',
+  name: '',
+  description: '',
+  data: '',
+  created_at: '',
+  ending_at: '',
 };

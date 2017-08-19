@@ -3,7 +3,7 @@
     .ui.secondary.menu
         router-link( :to="{name: 'home.index'}").item Home
         router-link( :to="{name: 'leaderboard.index'}"  v-if="$store.state.auth.authenticated").item Leaderboard
-        router-link( :to="{name: 'competition.index'}"  v-if="$store.state.auth.authenticated").item Competitions
+        router-link( :to="{name: 'competitions.index'}"  v-if="$store.state.auth.authenticated").item Competitions
         a(href="#",  v-if="$store.state.auth.authenticated" @click.prevent="logout").item Logout
         router-link(:to="{name: 'login.index'}" v-if="!$store.state.auth.authenticated" ).item Login 
     slot

@@ -61,6 +61,17 @@ export default [
         // Competitions
   {
     path: '/competitions',
+    name: 'competitions.index',
+    component: require('@/pages/competitions/index.vue'),
+
+    // If the user needs to be authenticated to view this page
+    meta: {
+      auth: true,
+    },
+  },
+        // Competition
+  {
+    path: '/competition/:comp_id',
     name: 'competition.index',
     component: require('@/pages/competition/index.vue'),
 

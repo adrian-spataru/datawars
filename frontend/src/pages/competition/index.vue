@@ -1,12 +1,6 @@
 <template lang="pug">
 v-layout
-    h1.ui.header Competitons
-    ul.ui.relaxed.list
-        .item(v-for="competition in $store.state.competition.competitions")
-            i.large.star.middle.aligned.icon
-            .content
-                a.header(v-text="competition.name")
-                .description(v-text="competition.ending_at")
+    h1.ui.header(v-text="$store.state.competition.name") 
 </template>
 <script>
   /* ============
@@ -15,12 +9,12 @@ v-layout
    *
    * The home index page.
    */
-  import competitionsService from '@/services/competitions';
+  import competitionService from '@/services/competition';
 
 
   export default {
     mounted() {
-      competitionsService.all();
+      competitionService.all(this.$route.params.comp_id);
     },
     components: {
       VLayout: require('@/layouts/default.vue'),

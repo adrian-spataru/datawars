@@ -12,11 +12,6 @@ export const store = ({ commit }, payload) => {
   commit(types.STORE, payload);
 };
 
-export const clear = ({ commit }) => {
-  commit(types.CLEAR);
-};
-
 export default {
   store,
-  clear,
 };

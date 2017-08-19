@@ -14,6 +14,7 @@ import createLogger from 'vuex/dist/logger';
 // Modules
 import account from './modules/account';
 import auth from './modules/auth';
+import competitions from './modules/competitions';
 import competition from './modules/competition';
 
 
@@ -28,6 +29,7 @@ export default new Vuex.Store({
   modules: {
     account,
     auth,
+    competitions,
     competition,
   },
 
