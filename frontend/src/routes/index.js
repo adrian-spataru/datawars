@@ -80,7 +80,17 @@ export default [
       auth: true,
     },
   },
+        // Leaderboard
+  {
+    path: '/competition/:comp_id/leaderboard',
+    name: 'leaderboard.index',
+    component: require('@/pages/leaderboard/index.vue'),
 
+    // If the user needs to be authenticated to view this page
+    meta: {
+      auth: true,
+    },
+  },
   // Register
   {
     path: '/register',

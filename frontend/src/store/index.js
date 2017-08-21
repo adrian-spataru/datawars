@@ -16,6 +16,7 @@ import account from './modules/account';
 import auth from './modules/auth';
 import competitions from './modules/competitions';
 import competition from './modules/competition';
+import leaderboard from './modules/leaderboard';
 
 
 Vue.use(Vuex);
@@ -31,6 +32,7 @@ export default new Vuex.Store({
     auth,
     competitions,
     competition,
+    leaderboard,
   },
 
   /**

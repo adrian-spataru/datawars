@@ -11,49 +11,55 @@ v-layout
                 th.one.wide Entries
                 th.one.wide Last
             tbody
-                tr.positive
-                td 1
-                td
-                    i.chevron.up.green.icon
-                td.leaderName Awesome
-                td 0.54321
-                td 32
-                td 3d
-                tr
-                td 2
-                td
-                    i.chevron.down.red.icon
-                td.leaderName Blue
-                td 0.53211
-                td 3
-                td 2h   
-                tr
-                td 2
-                td
-                    i.minus.gray.icon
-                td.leaderName Blue
-                td 0.53211
-                td 3
-                td 2h
-                tr
-                td 2
-                td
-                    i.chevron.down.red.icon
-                td.leaderName Blue
-                td 0.53211
-                td 3
-                td 2h 
+                tr(v-for="item in $store.state.leaderboard.public").positive
+                    td 1
+                    td
+                        i.chevron.up.green.icon
+                    td(v-text="item.team_name").leaderName
+                    td(v-text="item.public_score")
+                    td 32
+                    td 3d
+                //-
+                    tr
+                    td 2
+                    td
+                        i.chevron.down.red.icon
+                    td.leaderName Blue
+                    td 0.53211
+                    td 3
+                    td 2h   
+                    tr
+                    td 2
+                    td
+                        i.minus.gray.icon
+                    td.leaderName Blue
+                    td 0.53211
+                    td 3
+                    td 2h
+                    tr
+                    td 2
+                    td
+                        i.chevron.down.red.icon
+                    td.leaderName Blue
+                    td 0.53211
+                    td 3
+                    td 2h 
 </template>
 
 <script>
   /* ============
-   * Leadboard Index Page
+   * Leaderboard Page
    * ============
    *
-   * Page where the user can view the leaderboard
+   * The leaderboard of a competition page.
    */
+  import leaderboardServices from '@/services/leaderboard';
+
 
   export default {
+    mounted() {
+      leaderboardServices.publicLeaderboard(this.$route.params.comp_id);
+    },
     components: {
       VLayout: require('@/layouts/default.vue'),
     },
