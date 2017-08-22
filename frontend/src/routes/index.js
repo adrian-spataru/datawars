@@ -91,6 +91,17 @@ export default [
       auth: true,
     },
   },
+        // Submission
+  {
+    path: '/competition/:comp_id/submission',
+    name: 'submission.index',
+    component: require('@/pages/submission/index.vue'),
+
+    // If the user needs to be authenticated to view this page
+    meta: {
+      auth: true,
+    },
+  },
   // Register
   {
     path: '/register',
