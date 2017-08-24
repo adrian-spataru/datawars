@@ -1,18 +1,17 @@
 <template lang="pug">
 v-layout
-    .ui.container(@click="reseterror")
-        h1.ui.header Login
-        .ui.input(v-bind:class="{error: $store.state.auth.error}")
-            input(v-model="user.username", placeholder="username")
-        br
-        .ui.input(v-bind:class="{error: $store.state.auth.error}")
-            input(v-model="user.password", type="password" placeholder="password")
-        br
-        p(v-if="$store.state.auth.error").ui.red Invalid Login Credentials
-        button.ui.button(v-on:click="login(user)") Login
-        br
-        p No account?
-        router-link(:to="{name: 'register.index'}") Register
+    .ui.five.column.centered.grid
+        .center.aligned.column
+            h2.ui.header Login
+            form.ui.form
+                .field(v-bind:class="{error: $store.state.auth.error}", @click="reseterror")
+                    input(v-model="user.username", placeholder="username")
+                .field(v-bind:class="{error: $store.state.auth.error}", @click="reseterror")
+                    input(v-model="user.password", type="password" placeholder="password")
+                p(v-if="$store.state.auth.error").ui.red Invalid Login Credentials
+                button.ui.fluid.button(v-on:click="login(user)") Login
+                p No account? 
+                    router-link(:to="{name: 'register.index'}") Register
 
 </template>
 
