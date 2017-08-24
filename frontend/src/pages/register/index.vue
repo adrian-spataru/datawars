@@ -8,6 +8,7 @@ v-layout
                     input(v-model="user.username", placeholder="username")
                 .field(v-bind:class="{error: $store.state.auth.error}", @click="reseterror")
                     input(v-model="user.password", type="password" placeholder="password")
+                p(v-if="$store.state.auth.error").ui.red Username taken or invalid input
                 button.ui.fluid.button(v-on:click="register(user)") Register
 
 </template>
