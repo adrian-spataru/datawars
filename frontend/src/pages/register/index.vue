@@ -1,13 +1,15 @@
 <template lang="pug">
 v-layout
-  h1.ui.header Registration
-  .ui.input(v-bind:class="{error: $store.state.auth.error}")
-    input(v-model="user.username", placeholder="username")
-  br
-  .ui.input(v-bind:class="{error: $store.state.auth.error}")
-    input(v-model="user.password", type="password" placeholder="password")
-  br
-  button.ui.button(v-on:click="register(user)") Register
+    .ui.two.column.centered.container.grid
+        .center.aligned.column
+            h2.ui.header Registration 
+            form.ui.form
+                .field(v-bind:class="{error: $store.state.auth.error}", @click="reseterror")
+                    input(v-model="user.username", placeholder="username")
+                .field(v-bind:class="{error: $store.state.auth.error}", @click="reseterror")
+                    input(v-model="user.password", type="password" placeholder="password")
+                button.ui.fluid.button(v-on:click="register(user)") Register
+
 </template>
 
 <script>
@@ -36,6 +38,13 @@ v-layout
         console.log(user);
         authService.register(user);
       },
+      reseterror() {
+        this.$store.dispatch('auth/reseterror');
+      },
+    },
+
+    created() {
+      this.reseterror();
     },
 
     components: {

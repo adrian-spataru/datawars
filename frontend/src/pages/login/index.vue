@@ -1,6 +1,6 @@
 <template lang="pug">
 v-layout
-    .ui.five.column.centered.grid
+    .ui.two.column.centered.container.grid
         .center.aligned.column
             h2.ui.header Login
             form.ui.form
@@ -11,7 +11,7 @@ v-layout
                 p(v-if="$store.state.auth.error").ui.red Invalid Login Credentials
                 button.ui.fluid.button(v-on:click="login(user)") Login
                 p No account? 
-                    router-link(:to="{name: 'register.index'}") Register
+                    router-link(:to="{name: 'register.index'}", @click="reseterror") Register
 
 </template>
 
@@ -42,6 +42,10 @@ v-layout
       reseterror() {
         this.$store.dispatch('auth/reseterror');
       },
+    },
+
+    created() {
+      this.reseterror();
     },
 
     components: {
